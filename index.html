@@ -1162,6 +1162,181 @@
   }
 
   /* ════════════════════════════════════════
+     CV GRID (section parcours)
+     ════════════════════════════════════════ */
+  .cv-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: clamp(2rem, 4vw, 4rem);
+    align-items: start;
+  }
+  @media (max-width: 900px) { .cv-grid { grid-template-columns: 1fr; } }
+
+  .cv-col-head {
+    display: flex;
+    align-items: center;
+    gap: .65rem;
+    margin-bottom: 1.75rem;
+    padding-bottom: 1rem;
+    border-bottom: 1.5px solid var(--border-strong);
+  }
+  .cv-col-icon { font-size: 1.15rem; line-height: 1; }
+  .cv-col-head h3 {
+    font-family: var(--mono);
+    font-size: .78rem;
+    letter-spacing: .1em;
+    text-transform: uppercase;
+    color: var(--text-3);
+  }
+
+  .cv-line {
+    display: flex;
+    flex-direction: column;
+    gap: .8rem;
+    border-left: 2px solid var(--border-strong);
+    padding-left: 1.5rem;
+    margin-left: .25rem;
+  }
+
+  .cv-item {
+    position: relative;
+    padding: 1.2rem 1.35rem;
+    border: 1.5px solid var(--border-strong);
+    border-radius: 10px;
+    background: var(--bg-2);
+    transition: border-color .35s, box-shadow .35s, background .35s;
+  }
+  .cv-item::before {
+    content: '';
+    position: absolute;
+    left: calc(-1.5rem - 5px);
+    top: 1.25rem;
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    background: var(--bg-2);
+    border: 2px solid var(--border-strong);
+    transition: border-color .35s;
+  }
+  .cv-item:hover {
+    border-color: rgba(59,130,246,.45);
+    box-shadow: 0 8px 28px rgba(59,130,246,.08);
+    background: var(--bg-3);
+  }
+  .cv-item:hover::before { border-color: var(--accent); }
+
+  .cv-item-top {
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+    gap: .6rem;
+    margin-bottom: .35rem;
+  }
+  .cv-item h4 {
+    font-size: .95rem;
+    font-weight: 700;
+    letter-spacing: -.02em;
+    line-height: 1.3;
+  }
+
+  .cv-badge {
+    font-family: var(--mono);
+    font-size: .58rem;
+    letter-spacing: .06em;
+    text-transform: uppercase;
+    padding: .2rem .48rem;
+    border-radius: 999px;
+    border: 1px solid;
+    white-space: nowrap;
+    flex-shrink: 0;
+    margin-top: .1rem;
+  }
+  .cv-badge[data-type="cdi"]        { color: #22c55e; border-color: rgba(34,197,94,.4);  background: rgba(34,197,94,.07); }
+  .cv-badge[data-type="stage"]      { color: var(--text-3); border-color: var(--border); background: transparent; }
+  .cv-badge[data-type="cdd"]        { color: #f97316; border-color: rgba(249,115,22,.4); background: rgba(249,115,22,.07); }
+  .cv-badge[data-type="freelance"]  { color: #3b82f6; border-color: rgba(59,130,246,.4); background: rgba(59,130,246,.07); }
+  .cv-badge[data-type="job"]        { color: var(--text-2); border-color: var(--border); background: transparent; }
+  .cv-badge[data-type="degree"]     { color: var(--accent); border-color: rgba(59,130,246,.3); background: rgba(59,130,246,.06); }
+  .cv-badge[data-type="en cours"]   { color: var(--accent); border-color: rgba(59,130,246,.3); background: rgba(59,130,246,.06); }
+
+  .cv-org {
+    font-family: var(--mono);
+    font-size: .68rem;
+    color: var(--text-3);
+    text-transform: uppercase;
+    letter-spacing: .07em;
+    margin-bottom: .3rem;
+  }
+  .cv-meta { display: flex; align-items: center; gap: .4rem; flex-wrap: wrap; }
+  .cv-date { font-family: var(--mono); font-size: .63rem; color: var(--accent); letter-spacing: .07em; text-transform: uppercase; }
+  .cv-sep  { color: var(--border-strong); }
+  .cv-loc  { font-family: var(--mono); font-size: .63rem; color: var(--text-2); letter-spacing: .04em; }
+
+  /* autres expériences */
+  .xp-strip {
+    margin-top: 3rem;
+    padding-top: 2.5rem;
+    border-top: 1px solid var(--border);
+  }
+  .xp-strip-label {
+    font-family: var(--mono);
+    font-size: .65rem;
+    letter-spacing: .12em;
+    text-transform: uppercase;
+    color: var(--text-3);
+    margin-bottom: 1.25rem;
+  }
+  .xp-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 1rem;
+  }
+  @media (max-width: 900px) { .xp-grid { grid-template-columns: repeat(2,1fr); } }
+  @media (max-width: 560px) { .xp-grid { grid-template-columns: 1fr; } }
+
+  .xp-card {
+    border: 1.5px solid var(--border-strong);
+    border-radius: 12px;
+    background: var(--bg-2);
+    padding: 1.4rem 1.35rem;
+    display: flex;
+    flex-direction: column;
+    gap: .7rem;
+    transition: border-color .35s, box-shadow .35s, background .35s;
+  }
+  .xp-card:hover {
+    border-color: rgba(59,130,246,.4);
+    box-shadow: 0 6px 24px rgba(59,130,246,.07);
+    background: var(--bg-3);
+  }
+  .xp-card-top { display: flex; justify-content: space-between; align-items: center; gap: .5rem; }
+  .xp-cat {
+    font-family: var(--mono);
+    font-size: .63rem;
+    letter-spacing: .1em;
+    text-transform: uppercase;
+    color: var(--accent);
+  }
+  .xp-pill {
+    font-family: var(--mono);
+    font-size: .6rem;
+    letter-spacing: .07em;
+    text-transform: uppercase;
+    color: var(--text-2);
+    border: 1px solid var(--border);
+    padding: .22rem .55rem;
+    border-radius: 999px;
+    white-space: nowrap;
+  }
+  .xp-card h4 {
+    font-size: 1.05rem;
+    font-weight: 700;
+    letter-spacing: -.02em;
+    line-height: 1.2;
+  }
+  .xp-card p { font-size: .825rem; color: var(--text-2); line-height: 1.7; }
+
+  /* ════════════════════════════════════════
      CONTACT
      ════════════════════════════════════════ */
   #contact { padding-bottom: 60px; }
@@ -1854,141 +2029,203 @@
       <h2 data-i18n="ch3.h2">Mon <em>évolution</em>.</h2>
     </div>
 
-    <!-- timeline years -->
-    <div class="timeline-years reveal">
-      <div class="ty">
-        <div class="y">2018</div>
-        <div class="yt">DUT MMI</div>
-        <div class="ys">Bases tech &amp; design</div>
+    <div class="cv-grid">
+
+      <!-- ── EXPÉRIENCE ── -->
+      <div class="cv-col">
+        <div class="cv-col-head">
+          <span class="cv-col-icon" aria-hidden="true">💼</span>
+          <h3>Expérience</h3>
+        </div>
+        <div class="cv-line">
+
+          <article class="cv-item">
+            <div class="cv-item-top">
+              <h4>Chef de projet web &amp; SI</h4>
+              <span class="cv-badge" data-type="cdi">CDI</span>
+            </div>
+            <p class="cv-org">AlmaviaCX</p>
+            <div class="cv-meta">
+              <span class="cv-date">Sept 2023 – Fév 2025</span>
+              <span class="cv-sep" aria-hidden="true">·</span>
+              <span class="cv-loc">France</span>
+            </div>
+          </article>
+
+          <article class="cv-item">
+            <div class="cv-item-top">
+              <h4>Assistant chef de projet Web et mobile</h4>
+              <span class="cv-badge" data-type="stage">Stage</span>
+            </div>
+            <p class="cv-org">AlmaviaCX</p>
+            <div class="cv-meta">
+              <span class="cv-date">Fév – Juil 2023</span>
+              <span class="cv-sep" aria-hidden="true">·</span>
+              <span class="cv-loc">France</span>
+            </div>
+          </article>
+
+          <article class="cv-item">
+            <div class="cv-item-top">
+              <h4>Développeur web junior</h4>
+              <span class="cv-badge" data-type="cdd">CDD</span>
+            </div>
+            <p class="cv-org">GAM GABON</p>
+            <div class="cv-meta">
+              <span class="cv-date">2020 – 2021</span>
+              <span class="cv-sep" aria-hidden="true">·</span>
+              <span class="cv-loc">Libreville, Gabon</span>
+            </div>
+          </article>
+
+          <article class="cv-item">
+            <div class="cv-item-top">
+              <h4>Webmaster</h4>
+              <span class="cv-badge" data-type="stage">Stage</span>
+            </div>
+            <p class="cv-org">IT-Services</p>
+            <div class="cv-meta">
+              <span class="cv-date">2019</span>
+              <span class="cv-sep" aria-hidden="true">·</span>
+              <span class="cv-loc">Libreville, Gabon</span>
+            </div>
+          </article>
+
+          <article class="cv-item">
+            <div class="cv-item-top">
+              <h4>Chargé de communication adjoint</h4>
+              <span class="cv-badge" data-type="stage">Stage</span>
+            </div>
+            <p class="cv-org">Magazine Lavoixdeceluiquicrie</p>
+            <div class="cv-meta">
+              <span class="cv-date">2017 – 2019</span>
+              <span class="cv-sep" aria-hidden="true">·</span>
+              <span class="cv-loc">Libreville, Gabon</span>
+            </div>
+          </article>
+
+        </div>
       </div>
-      <div class="ty">
-        <div class="y">2020</div>
-        <div class="yt">GAM Gabon</div>
-        <div class="ys">Dev web fintech</div>
+
+      <!-- ── FORMATION ── -->
+      <div class="cv-col">
+        <div class="cv-col-head">
+          <span class="cv-col-icon" aria-hidden="true">🎓</span>
+          <h3>Formation</h3>
+        </div>
+        <div class="cv-line">
+
+          <article class="cv-item">
+            <div class="cv-item-top">
+              <h4>Projets personnels &amp; montée en compétences</h4>
+              <span class="cv-badge" data-type="en cours">En cours</span>
+            </div>
+            <div class="cv-meta">
+              <span class="cv-date">2025 - 2026</span>
+            </div>
+          </article>
+
+          <article class="cv-item">
+            <div class="cv-item-top">
+              <h4>Master 2 Produits et Services Multimédia</h4>
+              <span class="cv-badge" data-type="degree">Bac+5</span>
+            </div>
+            <p class="cv-org">Université de Franche-Comté</p>
+            <div class="cv-meta">
+              <span class="cv-date">2021 – 2023</span>
+              <span class="cv-sep" aria-hidden="true">·</span>
+              <span class="cv-loc">Montbéliard, France</span>
+            </div>
+          </article>
+
+          <article class="cv-item">
+            <div class="cv-item-top">
+              <h4>Licence 3 Communication numérique et Webmastering</h4>
+              <span class="cv-badge" data-type="degree">Bac+3</span>
+            </div>
+            <p class="cv-org">INPTIC</p>
+            <div class="cv-meta">
+              <span class="cv-date">2019 – 2020</span>
+              <span class="cv-sep" aria-hidden="true">·</span>
+              <span class="cv-loc">Libreville, Gabon</span>
+            </div>
+          </article>
+
+          <article class="cv-item">
+            <div class="cv-item-top">
+              <h4>DUT Métiers de l'Internet et du Multimédia</h4>
+              <span class="cv-badge" data-type="degree">Bac+2</span>
+            </div>
+            <p class="cv-org">INPTIC</p>
+            <div class="cv-meta">
+              <span class="cv-date">2018 – 2019</span>
+              <span class="cv-sep" aria-hidden="true">·</span>
+              <span class="cv-loc">Libreville, Gabon</span>
+            </div>
+          </article>
+
+          <article class="cv-item">
+            <div class="cv-item-top">
+              <h4>BAC ES</h4>
+              <span class="cv-badge" data-type="degree">Bac</span>
+            </div>
+            <p class="cv-org">Lycée Georges MABIGNATH</p>
+            <div class="cv-meta">
+              <span class="cv-date">2014 – 2015</span>
+              <span class="cv-sep" aria-hidden="true">·</span>
+              <span class="cv-loc">Libreville, Gabon</span>
+            </div>
+          </article>
+
+        </div>
       </div>
-      <div class="ty">
-        <div class="y">2023</div>
-        <div class="yt">AlmaviaCX CDI</div>
-        <div class="ys">Pilotage AMOA · Min. Culture</div>
-      </div>
-      <div class="ty current">
-        <div class="y">2025</div>
-        <div class="yt">Cap GRC</div>
-        <div class="ys">Autoformation · POC · veille</div>
-      </div>
-      <div class="ty">
-        <div class="y">2026</div>
-        <div class="yt">Bac+6 Manager SSI</div>
-        <div class="ys">Alternance · cible rentrée</div>
+
+    </div>
+
+    <!-- ── AUTRES EXPÉRIENCES FORMATRICES ── -->
+    <div class="xp-strip">
+      <p class="xp-strip-label">Autres expériences formatrices</p>
+      <div class="xp-grid">
+
+        <article class="xp-card">
+          <div class="xp-card-top">
+            <span class="xp-cat">Relation client</span>
+            <span class="xp-pill">Job d'été</span>
+          </div>
+          <h4>Réceptionniste</h4>
+          <p>Accueil, organisation et sens du service.</p>
+        </article>
+
+        <article class="xp-card">
+          <div class="xp-card-top">
+            <span class="xp-cat">Création</span>
+            <span class="xp-pill">Freelance</span>
+          </div>
+          <h4>Graphiste freelance</h4>
+          <p>Conception visuelle, autonomie et adaptation au brief.</p>
+        </article>
+
+        <article class="xp-card">
+          <div class="xp-card-top">
+            <span class="xp-cat">Communication</span>
+            <span class="xp-pill">Job d'été</span>
+          </div>
+          <h4>Communication &amp; cadrage</h4>
+          <p>Production de contenus, image et coordination associative.</p>
+        </article>
+
+        <article class="xp-card">
+          <div class="xp-card-top">
+            <span class="xp-cat">Terrain</span>
+            <span class="xp-pill">Job d'été</span>
+          </div>
+          <h4>Commercial</h4>
+          <p>Vente, contact client et compréhension des besoins.</p>
+        </article>
+
       </div>
     </div>
 
-    <!-- detailed journey cards — zigzag -->
-    <div class="zigzag">
-      <article class="jcard reveal">
-        <div class="jcard-head">
-          <span class="jchip form">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 10v6M2 10l10-5 10 5-10 5z"/><path d="M6 12v5c3 3 9 3 12 0v-5"/></svg>
-            Formation cible
-          </span>
-          <span class="jchip" data-i18n="jc.target">Rentrée 2026 — visé</span>
-          <span class="jchip" data-i18n="jc.fr">France</span>
-        </div>
-        <h3>Bac+6 Manager SSI</h3>
-        <div class="where" data-i18n="jc.bac6.where">Candidature en cours — cap RSSI assistant, consultant GRC, PMO Cyber.</div>
-      </article>
-
-      <article class="jcard reveal">
-        <div class="jcard-head">
-          <span class="jchip now">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
-            Période active
-          </span>
-          <span class="jchip">Fév 2025 — aujourd'hui</span>
-          <span class="jchip">Nantes</span>
-        </div>
-        <h3 data-i18n="jc.now.h">Cap GRC — autoformation &amp; projet perso</h3>
-        <div class="where" data-i18n="jc.now.where">Je construis VeilleReg (POC veille réglementaire LLM) en parallèle de SecNumAcadémie, EBIOS RM et de l'atelier RGPD CNIL.</div>
-      </article>
-
-      <article class="jcard reveal">
-        <div class="jcard-head">
-          <span class="jchip exp">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="7" width="20" height="14" rx="2"/><path d="M16 21V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v16"/></svg>
-            Expérience · 17 mois
-          </span>
-          <span class="jchip">Sept 2023 — Fév 2025</span>
-          <span class="jchip">CDI · Nantes / Paris</span>
-        </div>
-        <h3>AlmaviaCX — Consultant AMOA / Chef de projet web</h3>
-        <div class="where" data-i18n="jc.amx.where">J'y ai piloté la refonte de Culture.gouv.fr (Proxy PO, équipe 6), les Archives nationales d'outre-mer (CDP), l'intégration MuseumPlus du Mobilier national et le parcours contact du Groupe Atlantic. C'est aussi là que j'ai conduit les correctifs post-audit sécurité et rédigé le référentiel d'infrastructure SSI.</div>
-      </article>
-
-      <article class="jcard reveal">
-        <div class="jcard-head">
-          <span class="jchip exp">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="7" width="20" height="14" rx="2"/><path d="M16 21V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v16"/></svg>
-            Stage · 6 mois
-          </span>
-          <span class="jchip">Fév — Juil 2023</span>
-          <span class="jchip">Nantes / Paris</span>
-        </div>
-        <h3>AlmaviaCX — Assistant Chef de projet digital</h3>
-        <div class="where" data-i18n="jc.stage.where">Stage de fin d'études. Migration analytics sur 150 sites (Piano → Eulerian) et premières actions correctives post-audit sécurité sur les plateformes culturelles.</div>
-      </article>
-
-      <article class="jcard reveal">
-        <div class="jcard-head">
-          <span class="jchip form">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 10v6M2 10l10-5 10 5-10 5z"/><path d="M6 12v5c3 3 9 3 12 0v-5"/></svg>
-            Formation
-          </span>
-          <span class="jchip">2021 — 2023</span>
-          <span class="jchip">Besançon</span>
-        </div>
-        <h3>Master PSM — Produits &amp; Services Multimédia</h3>
-        <div class="where">Université de Franche-Comté</div>
-      </article>
-
-      <article class="jcard reveal">
-        <div class="jcard-head">
-          <span class="jchip exp">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="7" width="20" height="14" rx="2"/><path d="M16 21V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v16"/></svg>
-            Expérience · 9 mois
-          </span>
-          <span class="jchip">Juin 2020 — Fév 2021</span>
-          <span class="jchip">Libreville</span>
-        </div>
-        <h3>GAM Gabon — Développeur Web</h3>
-        <div class="where" data-i18n="jc.gam.where">5 fonctionnalités livrées sur app.gampay.org — Symfony et jQuery, côté fintech.</div>
-      </article>
-
-      <article class="jcard reveal">
-        <div class="jcard-head">
-          <span class="jchip form">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 10v6M2 10l10-5 10 5-10 5z"/><path d="M6 12v5c3 3 9 3 12 0v-5"/></svg>
-            Formation
-          </span>
-          <span class="jchip">2019 — 2020</span>
-          <span class="jchip">Libreville</span>
-        </div>
-        <h3>Licence Pro Communication Digitale &amp; Webmastering</h3>
-        <div class="where">INPTIC Gabon</div>
-      </article>
-
-      <article class="jcard reveal">
-        <div class="jcard-head">
-          <span class="jchip form">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 10v6M2 10l10-5 10 5-10 5z"/><path d="M6 12v5c3 3 9 3 12 0v-5"/></svg>
-            Formation
-          </span>
-          <span class="jchip">2018 — 2019</span>
-          <span class="jchip">Libreville</span>
-        </div>
-        <h3>DUT Métiers du Multimédia et de l'Internet</h3>
-        <div class="where">INPTIC Gabon</div>
-      </article>
-    </div>
   </div>
 </section>
 
