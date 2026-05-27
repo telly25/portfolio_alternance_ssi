@@ -1258,6 +1258,39 @@
   .cv-badge[data-type="job"]        { color: var(--text-2); border-color: var(--border); background: transparent; }
   .cv-badge[data-type="degree"]     { color: var(--accent); border-color: rgba(59,130,246,.3); background: rgba(59,130,246,.06); }
   .cv-badge[data-type="en cours"]   { color: var(--accent); border-color: rgba(59,130,246,.3); background: rgba(59,130,246,.06); }
+  .cv-badge[data-type="vise"]       { color: #a78bfa; border-color: rgba(167,139,250,.4); background: rgba(167,139,250,.07); }
+
+  .cv-skills {
+    list-style: none;
+    margin-top: .85rem;
+    padding-top: .8rem;
+    border-top: 1px solid var(--border);
+    display: flex;
+    flex-direction: column;
+    gap: .3rem;
+  }
+  .cv-skills li {
+    font-size: .75rem;
+    color: var(--text-2);
+    line-height: 1.5;
+    padding-left: .9rem;
+    position: relative;
+  }
+  .cv-skills li::before {
+    content: '';
+    position: absolute;
+    left: 0; top: .55em;
+    width: 4px; height: 4px;
+    border-radius: 50%;
+    background: var(--accent);
+  }
+  .cv-rythme {
+    font-family: var(--mono);
+    font-size: .62rem;
+    color: var(--text-3);
+    letter-spacing: .04em;
+    margin-top: .4rem;
+  }
 
   .cv-org {
     font-family: var(--mono);
@@ -2117,12 +2150,21 @@
 
           <article class="cv-item">
             <div class="cv-item-top">
-              <h4>Projets personnels &amp; montée en compétences</h4>
-              <span class="cv-badge" data-type="en cours">En cours</span>
+              <h4>Bac+6 Mastère Spécialisé® — Management de la sécurité des SI</h4>
+              <span class="cv-badge" data-type="vise">Alternance visée</span>
             </div>
+            <p class="cv-org">CESI — École d'ingénieurs</p>
             <div class="cv-meta">
-              <span class="cv-date">2025 - 2026</span>
+              <span class="cv-date">À partir de sept. 2026</span>
             </div>
+            <p class="cv-rythme">3 semaines entreprise / 1 semaine école</p>
+            <ul class="cv-skills">
+              <li>Définition et mise en œuvre de politiques de cybersécurité (PSSI)</li>
+              <li>Analyse de risques SI (EBIOS RM, ISO 27005)</li>
+              <li>Audit de sécurité et plans de remédiation</li>
+              <li>Gouvernance SSI, conformité réglementaire (ISO 27001, NIS2, DORA)</li>
+              <li>Gestion de crise cyber et continuité d'activité (PCA/PRA)</li>
+            </ul>
           </article>
 
           <article class="cv-item">
